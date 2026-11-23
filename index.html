@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Examen Final — Neuroanatomía I | UAD Campus Morelia</title>
+<style>
+  :root {
+    --bg: #F1F5F9;
+    --surface: #FFFFFF;
+    --primary: #0F2942;
+    --primary-light: #1E40AF;
+    --accent: #BE123C;
+    --emerald: #059669;
+    --amber: #D97706;
+    --text: #0F172A;
+    --muted: #475569;
+    --border: #CBD5E1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  .hidden { display: none !important; }
+
+  /* Header */
+  .topbar {
+    background: var(--primary);
+    color: #FFFFFF;
+    padding: 12px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    box-shadow: 0 2px 8px rgba(15,41,66,0.18);
+  }
+  .topbar-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .brand-title { font-size: 1rem; font-weight: 700; letter-spacing: 0.2px; }
+  .brand-sub { font-size: 0.78rem; color: #CBD5E1; }
+  .timer-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .timer-bar-wrap {
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.2);
+    margin-top: 8px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .timer-bar {
+    height: 100%;
+    width: 100%;
+    background: var(--emerald);
+    transition: width 0.5s linear, background-color 0.4s ease;
+  }
+
+  /* Containers */
+  .container {
+    max-width: 880px;
+    margin: 22px auto;
+    padding: 0 14px 40px 14px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+  }
+
+  /* Forms & Buttons */
+  label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--primary); }
+  select, input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.96rem;
+    background: #FFFFFF;
+    color: var(--text);
+  }
+  select:focus { outline: none; border-color: var(--primary-light); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.94rem;
+    cursor: pointer;
+    transition: transform 0.08s ease, opacity 0.15s ease, background-color 0.15s ease;
+    text-decoration: none;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .btn-primary { background: var(--primary); color: #FFFFFF; }
+  .btn-primary:hover { background: #163a5c; }
+  .btn-emerald { background: var(--emerald); color: #FFFFFF; }
+  .btn-emerald:hover { background: #047857; }
+  .btn-crimson { background: var(--accent); color: #FFFFFF; }
+  .btn-crimson:hover { background: #9F1239; }
+  .btn-outline { background: #FFFFFF; color: var(--primary); border: 1.5px solid var(--border); }
+  .btn-outline:hover { background: #F8FAFC; }
+  .btn-whatsapp { background: #16A34A; color: #FFFFFF; }
+  .btn-mail { background: #1D4ED8; color: #FFFFFF; }
+  .btn-block { width: 100%; }
+  .btn-sm { padding: 6px 12px; font-size: 0.82rem; border-radius: 8px; }
+
+  .alert-box {
+    background: #FEF2F2;
+    border-left: 4px solid var(--accent);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.87rem;
+    color: #7F1D1D;
+    margin: 14px 0;
+  }
+  .warn-box {
+    background: #FFFBEB;
+    border: 1.5px solid var(--amber);
+    border-left: 5px solid var(--amber);
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    color: #78350F;
+    margin: 14px 0;
+  }
+  .info-box {
+    background: #EFF6FF;
+    border-left: 4px solid var(--primary-light);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.87rem;
+    color: #1E3A8A;
+    margin: 14px 0;
+  }
+
+  /* Question Navigator Grid */
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 560px) {
+    .nav-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .q-pill {
+    padding: 8px 4px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #FFFFFF;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    color: var(--muted);
+  }
+  .q-pill.answered { background: #DCFCE7; border-color: #16A34A; color: #166534; }
+  .q-pill.current { background: var(--primary); border-color: var(--primary); color: #FFFFFF; box-shadow: 0 0 0 2px rgba(15,41,66,0.25); }
+
+  /* Question Card */
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    background: #E2E8F0;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  .q-text { font-size: 1.04rem; font-weight: 600; color: var(--text); margin-bottom: 16px; }
+  .svg-wrap {
+    margin: 14px 0 18px 0;
+    text-align: center;
+  }
+  .svg-wrap svg { max-width: 340px; width: 100%; height: auto; }
+  .pulse-dot { animation: pulseDot 1.6s infinite; }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .options-list { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    padding: 13px 15px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: #FFFFFF;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .opt-btn:hover { border-color: var(--primary-light); background: #F8FAFC; }
+  .opt-btn.selected {
+    border-color: var(--primary);
+    background: #EFF6FF;
+    font-weight: 600;
+  }
+  .opt-letter {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #E2E8F0;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+  .opt-btn.selected .opt-letter { background: var(--primary); color: #FFFFFF; }
+
+  .nav-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+
+  /* Receipt & Print PDF (1-Page Letter Layout) */
+  .score-banner {
+    background: var(--primary);
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .score-big { font-size: 2.3rem; font-weight: 800; line-height: 1.1; }
+  .audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.9rem;
+  }
+  .audit-table th, .audit-table td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .audit-table th { background: #F1F5F9; color: var(--primary); font-weight: 700; width: 38%; }
+  .token-box {
+    background: #F8FAFC;
+    border: 1.5px dashed var(--primary);
+    border-radius: 10px;
+    padding: 12px;
+    word-break: break-all;
+    font-size: 0.82rem;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .status-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .status-ok { background: #DCFCE7; color: #166534; }
+  .status-warn { background: #FEF3C7; color: #92400E; }
+  .status-err { background: #FEE2E2; color: #991B1B; }
+
+  /* Modal */
+  .modal-bg {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+    padding: 16px;
+  }
+  .modal-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    max-width: 440px;
+    width: 100%;
+    padding: 22px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  /* Print Styles: Clean 1-Page Letter PDF */
+  @page { size: letter; margin: 12mm; }
+  @media print {
+    body { background: #FFFFFF; color: #000000; }
+    .topbar, .no-print, .actions-grid { display: none !important; }
+    .container { max-width: 100%; margin: 0; padding: 0; }
+    .card { border: none; box-shadow: none; padding: 0; }
+    .print-header { display: block !important; border-bottom: 2px solid #0F2942; padding-bottom: 8px; margin-bottom: 12px; }
+    .score-banner { background: #0F2942 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 14px; margin-bottom: 12px; }
+    .audit-table th { background: #F1F5F9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 6px 8px; }
+    .audit-table td { padding: 6px 8px; }
+    .token-box { border: 1.5px solid #0F2942; padding: 10px; font-size: 0.78rem; }
+  }
+  .print-header { display: none; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <div class="brand-title">Universidad Autónoma de Durango — Campus Morelia</div>
+      <div class="brand-sub">Licenciatura en Medicina General • Examen Final de Neuroanatomía I (2.º «A»)</div>
+    </div>
+    <div id="headerTimerBox" class="timer-pill hidden">
+      <span>⏱</span>
+      <span id="timerText" class="mono">50:00</span>
+    </div>
+  </div>
+  <div id="headerBarWrap" class="timer-bar-wrap hidden">
+    <div id="timerBar" class="timer-bar"></div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- VISTA 1: REGISTRO -->
+  <section id="viewLogin" class="card">
+    <h1 style="font-size:1.35rem; color:var(--primary); margin-bottom:6px;">Examen Final — Neuroanatomía I</h1>
+    <p style="font-size:0.92rem; color:var(--muted); margin-bottom:16px;">
+      28 reactivos de opción múltiple • Tiempo límite: <strong>50 minutos</strong> • Criterio aprobatorio: 70% (20 aciertos).
+    </p>
+
+    <!-- ALERTA BLOQUEADORA DE WEBVIEW (WHATSAPP / INSTAGRAM / FACEBOOK) -->
+    <div id="webviewWarning" class="warn-box hidden">
+      <strong style="font-size:0.96rem;">⚠️ Estás abriendo el examen dentro del navegador interno de una app (WhatsApp / Redes).</strong>
+      <p style="margin-top:6px;">
+        Para evitar que falle la descarga de tu <strong>Reporte PDF</strong> o el envío de resultados, abre este enlace en tu navegador oficial:
+      </p>
+      <ul style="margin-left:18px; margin-top:6px;">
+        <li><strong>En Android:</strong> toca los tres puntos (<strong>⋮</strong>) arriba a la derecha → <em>«Abrir en Chrome»</em>.</li>
+        <li><strong>En iPhone / iPad:</strong> toca el ícono de brújula / compartir → <em>«Abrir en Safari»</em>.</li>
+      </ul>
+    </div>
+
+    <div class="alert-box">
+      <strong>Reglas de Integridad Académica y Uso en Móviles:</strong>
+      <ul style="margin-left:18px; margin-top:6px;">
+        <li>No abandones esta pestaña ni cambies de aplicación durante el examen. Si sales de la pantalla o recargas, <strong>tus respuestas se reiniciarán</strong>, las preguntas se reordenarán y quedará registrado el número de salidas e intentos.</li>
+        <li><strong>Mantén tu pantalla encendida:</strong> evita que tu celular o iPad se bloquee solo por inactividad (el bloqueo de pantalla cuenta como salida).</li>
+        <li>El reloj global de 50 minutos corre de forma continua e independiente del reloj del dispositivo.</li>
+        <li>Al finalizar, descarga tu <strong>Reporte PDF</strong> y envía tu comprobante al docente.</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:16px;">
+      <label for="selectStudent">Selecciona tu matrícula y nombre completo:</label>
+      <select id="selectStudent">
+        <option value="">-- Selecciona tu nombre oficial --</option>
+      </select>
+    </div>
+
+    <div style="margin-top:14px; display:flex; align-items:flex-start; gap:10px;">
+      <input type="checkbox" id="chkConfirm" style="margin-top:4px; width:18px; height:18px;">
+      <label for="chkConfirm" style="font-weight:500; color:var(--text); margin:0; cursor:pointer;">
+        Confirmo que soy el estudiante seleccionado, que uso Safari/Chrome y acepto las reglas de monitoreo de sesión.
+      </label>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button id="btnStart" class="btn btn-primary btn-block" onclick="iniciarExamen()">Iniciar Examen Final</button>
+    </div>
+  </section>
+
+  <!-- VISTA 2: EXAMEN -->
+  <section id="viewExam" class="hidden no-select">
+    <div class="card" style="padding:16px; margin-bottom:14px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+        <div style="font-size:0.88rem; color:var(--muted);">
+          <strong id="examStudentLabel" style="color:var(--primary);"></strong>
+        </div>
+        <div style="font-size:0.82rem; font-weight:600; color:var(--muted);">
+          Contestadas: <span id="answeredCount" style="color:var(--emerald);">0</span> / 28 &nbsp;|&nbsp;
+          Intentos: <span id="attemptCount">1</span> &nbsp;|&nbsp;
+          Salidas: <span id="exitCount" style="color:var(--accent);">0</span>
+        </div>
+      </div>
+      <div id="navGrid" class="nav-grid"></div>
+    </div>
+
+    <div class="card">
+      <div id="qBadge" class="badge">Reactivo 1 de 28</div>
+      <div id="qText" class="q-text"></div>
+      <div id="qSvg" class="svg-wrap hidden"></div>
+      <div id="qOptions" class="options-list"></div>
+
+      <div class="nav-actions">
+        <button id="btnPrev" class="btn btn-outline" onclick="navegar(-1)">← Anterior</button>
+        <div style="display:flex; gap:10px;">
+          <button id="btnNext" class="btn btn-primary" onclick="navegar(1)">Siguiente →</button>
+          <button id="btnFinish" class="btn btn-crimson" onclick="abrirModalFinalizar()">Finalizar y Enviar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISTA 3: COMPROBANTE Y REPORTE PDF -->
+  <section id="viewReceipt" class="card hidden">
+    <div class="print-header">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:1.1rem; font-weight:800; color:#0F2942;">UNIVERSIDAD AUTÓNOMA DE DURANGO — CAMPUS MORELIA</div>
+          <div style="font-size:0.86rem; color:#475569;">Licenciatura en Medicina General • Reporte Oficial de Examen Final: Neuroanatomía I</div>
+        </div>
+        <div style="text-align:right; font-size:0.78rem; color:#475569;">
+          Docente: Dr. Ricardo de J. Altamirano Mendoza<br>
+          Grupo: 2.º «A»
+        </div>
+      </div>
+    </div>
+
+    <div class="score-banner">
+      <div>
+        <div style="font-size:0.82rem; opacity:0.85; text-transform:uppercase; letter-spacing:0.6px;">Resultado Oficial</div>
+        <div id="rcpName" style="font-size:1.15rem; font-weight:700; margin-top:2px;"></div>
+        <div id="rcpMat" class="mono" style="font-size:0.88rem; opacity:0.9;"></div>
+      </div>
+      <div style="text-align:right;">
+        <div id="rcpScore" class="score-big mono">0 / 100</div>
+        <div id="rcpAciertos" style="font-size:0.88rem; opacity:0.9;">0 de 28 aciertos</div>
+      </div>
+    </div>
+
+    <div id="sheetsStatusBox" class="info-box no-print" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+      <span id="sheetsStatusText">Registrando resultado en servidor docente...</span>
+      <button id="btnRetrySheet" class="btn btn-outline btn-sm hidden" onclick="enviarAGoogleSheets(true)">🔄 Reintentar envío</button>
+    </div>
+
+    <table class="audit-table">
+      <tr><th>Bloque A — Correlación Clínico-Topográfica (7)</th><td id="rcpBlkA"></td></tr>
+      <tr><th>Bloque B — Identificación Espacial y Relaciones (11)</th><td id="rcpBlkB"></td></tr>
+      <tr><th>Bloque C — Conceptos, Embriología e Histología (10)</th><td id="rcpBlkC"></td></tr>
+      <tr><th>Hora de Inicio / Hora de Término</th><td id="rcpTimes" class="mono"></td></tr>
+      <tr><th>Duración Total y Tipo de Cierre</th><td id="rcpDuration"></td></tr>
+      <tr><th>Integridad de Sesión (Salidas / Intentos)</th><td id="rcpIntegrity"></td></tr>
+      <tr><th>Identificador de Dispositivo (ID_DISP)</th><td id="rcpDevice" class="mono"></td></tr>
+    </table>
+
+    <div style="margin-top:12px;">
+      <div style="font-size:0.82rem; font-weight:700; color:var(--primary); text-transform:uppercase;">
+        Folio Criptográfico de Validación Anti-Alteración (Incluye auditoría de 28 reactivos):
+      </div>
+      <div id="rcpToken" class="token-box mono"></div>
+    </div>
+
+    <div class="actions-grid no-print">
+      <button class="btn btn-primary" onclick="window.print()">📄 Descargar / Guardar PDF</button>
+      <a id="btnWhatsApp" class="btn btn-whatsapp" target="_blank" rel="noopener">💬 Enviar por WhatsApp</a>
+      <a id="btnEmail" class="btn btn-mail">✉️ Enviar por Correo</a>
+      <button class="btn btn-outline" onclick="copiarComprobante()">📋 Copiar Comprobante</button>
+      <button class="btn btn-outline" onclick="descargarTxt()">⬇ Respaldo .TXT</button>
+    </div>
+
+    <p class="no-print" style="font-size:0.8rem; color:var(--muted); margin-top:14px; text-align:center;">
+      Guarda tu archivo PDF (en «Guardar como PDF») y envíalo al docente si así se te solicita.
+    </p>
+  </section>
+
+</main>
+
+<!-- MODAL CONFIRMACIÓN FINALIZAR -->
+<div id="modalFinish" class="modal-bg hidden">
+  <div class="modal-card">
+    <h3 style="color:var(--primary); margin-bottom:8px;">¿Finalizar Examen Final?</h3>
+    <p id="modalFinishText" style="font-size:0.92rem; color:var(--muted); margin-bottom:18px;"></p>
+    <div style="display:flex; justify-content:flex-end; gap:10px;">
+      <button class="btn btn-outline" onclick="cerrarModalFinalizar()">Seguir revisando</button>
+      <button class="btn btn-crimson" onclick="finalizarExamen('M')">Sí, enviar ahora</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL AVISO REINICIO POR SALIDA -->
+<div id="modalReset" class="modal-bg hidden">
+  <div class="modal-card" style="border-top:5px solid var(--accent);">
+    <h3 style="color:var(--accent); margin-bottom:8px;">⚠️ Salida de Pantalla Detectada</h3>
+    <p id="modalResetText" style="font-size:0.92rem; color:var(--text); margin-bottom:16px;"></p>
+    <button class="btn btn-primary btn-block" onclick="document.getElementById('modalReset').classList.add('hidden')">Entendido, continuar</button>
+  </div>
+</div>
+
+<script>
+// =========================================================================
+// CONFIGURACIÓN DEL DOCENTE (Pega aquí la URL de tu Google Apps Script)
+// =========================================================================
+const CONFIG_DOCENTE = {
+  CORREO_DOCENTE: "ricardoaltamirano27@gmail.com",
+  WHATSAPP_DOCENTE: "525591982631",
+  // Pega entre comillas la URL de implementación de tu Google Apps Script (Web App):
+  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbz78dcKmfZIS0bFV52VDP7EOPM1_xEPMOgbQGNVxMrIzJxCfc6_6LfhZTPEYKKql0zC/exec"
+};
+
+const EXAM_DURATION_SEC = 50 * 60; // 50 minutos exactos
+const STORAGE_KEY = "UAD_NEURO1_FINAL_2026_STATE_V2";
+const DEVICE_KEY = "UAD_NEURO1_DEV_ID";
+
+const ALUMNOS_OFICIALES = [{"matricula": "1025089023", "nombre": "ALONSO GUILLEN ALONDRA"}, {"matricula": "1025089050", "nombre": "ESCOBAR CARRILLO VALENTINA"}, {"matricula": "1026089008", "nombre": "FLORES ROMERO EDGAR"}, {"matricula": "1026089006", "nombre": "GALINDO ARELLANO JONAS MANUEL"}, {"matricula": "1026089004", "nombre": "GONZALEZ CAZARES RITA"}, {"matricula": "1026089014", "nombre": "GONZALEZ GUEVARA YARAZET JOSELINE"}, {"matricula": "1025089051", "nombre": "HERNANDEZ JUAREZ SOFIA"}, {"matricula": "1026089009", "nombre": "IBARRA GARCIA LUNA MICHELLE"}, {"matricula": "1026089012", "nombre": "MAGAÑA TAPIA MARIA FERNANDA"}, {"matricula": "1025089002", "nombre": "ROSALES VAZQUEZ VIOLETA VALENTINA"}, {"matricula": "1025089049", "nombre": "RUIZ TOLEDO EDGAR SAMUEL"}, {"matricula": "1026089011", "nombre": "SANCHEZ VAZQUEZ LORENA DAMAR"}, {"matricula": "1026089007", "nombre": "ZAVALA VALLEJO ANGELES"}];
+const MASTER_QUESTIONS = [{"id": 1, "b": "A", "svg": "medula_hemiseccion", "p": "Un paciente de 34 años sufre una herida penetrante medular con el patrón de lesión sombreado en el esquema. Presenta pérdida ipsilateral de propiocepción consciente y vibración por debajo de T10, junto con pérdida contralateral de dolor y temperatura desde T11–T12 hacia abajo. ¿Qué cuadro topográfico corresponde a este hallazgo?", "o": ["Siringomielia centromedular cervical", "Síndrome de hemisección medular (Brown-Séquard)", "Lesión bilateral exclusiva de las astas anteriores", "Neuropatía periférica simétrica distal"], "k": 29}, {"id": 2, "b": "A", "svg": null, "p": "Un paciente acude por pérdida de la sensibilidad termoalgésica en ambos miembros superiores en distribución de «capa» o «chaleco», conservando el tacto epicrítico y la propiocepción. ¿Qué estructura se ve comprometida inicialmente por la expansión central de la cavidad?", "o": ["Fascículos grácil y cuneiforme en el cordón posterior", "Pirámides de la médula oblongada", "Comisura blanca anterior (cruce de fibras espinotalámicas)", "Pedúnculos cerebelosos inferiores"], "k": 39}, {"id": 3, "b": "A", "svg": null, "p": "Tras una lesión localizada en la región medial izquierda de la médula oblongada, el paciente presenta desviación de la lengua hacia la izquierda al protruirla y hemiparesia con pérdida de propiocepción en el hemicuerpo derecho. ¿Qué estructuras están comprometidas en el lado izquierdo del bulbo?", "o": ["Nervio hipogloso (NC XII), pirámide bulbar y lemnisco medial", "Nervio vago (NC X), pedúnculo cerebeloso inferior y núcleo solitario", "Nervio facial (NC VII), núcleo abducens y colículo inferior", "Nervio oculomotor (NC III), sustancia negra y acueducto cerebral"], "k": 28}, {"id": 4, "b": "A", "svg": "cara_medial_motora", "p": "Un paciente presenta parálisis espástica y pérdida de fuerza motora voluntaria limitada exclusivamente a la pierna y el pie derechos, conservando intacta la movilidad de la cara y el miembro superior derechos. De acuerdo con la somatotopía cortical del área motora primaria, ¿a qué región corresponde la zona señalada en el hemisferio izquierdo?", "o": ["Porción inferolateral del giro precentral (opérculo frontal)", "Giro temporal superior posterior (área 22)", "Labios del surco calcarino en el lóbulo occipital", "Porción medial del giro precentral (lobulillo paracentral)"], "k": 52}, {"id": 5, "b": "A", "svg": "cara_lateral_broca", "p": "Un paciente diestro sufre una lesión focal en la región cortical señalada con la flecha en el hemisferio izquierdo. Al explorarlo, comprende órdenes verbales y escritas sin dificultad, pero su lenguaje espontáneo es no fluente, telegráfico y con gran esfuerzo para articular palabras. ¿Qué cuadro clínico presenta?", "o": ["Afasia sensitiva o de Wernicke", "Afasia motora o de Broca", "Afasia de conducción por lesión exclusiva del esplenio", "Agnosia visual asociativa"], "k": 41}, {"id": 6, "b": "A", "svg": null, "p": "Tras una lesión localizada en la rodilla y el brazo posterior de la cápsula interna izquierda, ¿qué déficit motor espera encontrar en el paciente?", "o": ["Parálisis flácida exclusivamente ipsilateral en el miembro superior", "Ataxia cerebelosa pura sin debilidad muscular", "Hemiparesia o hemiplejía espástica contralateral (derecha)", "Pérdida aislada de la audición en el oído izquierdo"], "k": 51}, {"id": 7, "b": "A", "svg": null, "p": "Un paciente sufre una lesión bilateral de la formación hipocampal y desde ese momento es incapaz de consolidar nuevos recuerdos declarativos de hechos recientes, aunque conserva intactos los recuerdos de su infancia y adolescencia. ¿Cómo se denomina esta alteración?", "o": ["Amnesia anterógrada", "Estupor por interrupción del SARA", "Crisis uncinada olfatoria", "Hemianopsia homónima contralateral"], "k": 40}, {"id": 8, "b": "B", "svg": null, "p": "En el adulto, ¿a qué nivel vertebral termina inferiormente el cono medular de la médula espinal y qué estructuras ocupan el espacio subaracnoideo por debajo de este nivel hasta S2?", "o": ["T10–T11; cuerpos neuronales preganglionares simpáticos", "L1–L2; raíces de la cauda equina y filum terminal bañadas en LCR", "L4–L5; intumescencia cervical y ganglios espinales", "S1–S2; médula oblongada y cisterna magna"], "k": 50}, {"id": 9, "b": "B", "svg": "coronal_caudado", "p": "En el corte coronal de los hemisferios cerebrales mostrado en el esquema, ¿qué estructura de sustancia gris subcortical señala la flecha formando parte de la pared lateral del asta anterior del ventrículo lateral?", "o": ["Cola del núcleo caudado", "Globo pálido medial", "Cuerpo amigdalino (amígdala)", "Cabeza del núcleo caudado"], "k": 67}, {"id": 10, "b": "B", "svg": "tectum_mesencefalo", "p": "Observe la vista posterior del mesencéfalo (tectum) en el esquema. ¿Qué función principal se asocia con las prominencias señaladas como (1) superiores y (2) inferiores, respectivamente?", "o": ["(1) Reflejos visuales; (2) relevo de la vía auditiva", "(1) Vía gustativa; (2) reflejo nauseoso", "(1) Relevo olfatorio; (2) equilibrio vestibular", "(1) Secreción de LCR; (2) tono simpático"], "k": 49}, {"id": 11, "b": "B", "svg": null, "p": "¿Cómo se denomina la estructura estrecha situada en la línea media que une ambos hemisferios cerebelosos?", "o": ["Flóculo", "Nódulo", "Vermis", "Cuerpo calloso"], "k": 66}, {"id": 12, "b": "B", "svg": null, "p": "¿Qué cavidad ventricular se encuentra delimitada lateralmente por las paredes mediales de ambos tálamos y ventralmente por el hipotálamo?", "o": ["Cuarto ventrículo", "Tercer ventrículo", "Asta anterior del ventrículo lateral", "Acueducto cerebral (de Silvio)"], "k": 62}, {"id": 13, "b": "B", "svg": "cara_lateral_rolando", "p": "En el esquema de la cara superolateral del hemisferio cerebral, ¿qué referencia anatómica señala la flecha separando los lóbulos frontal y parietal?", "o": ["Surco lateral (de Silvio)", "Surco parietooccipital", "Surco calcarino", "Surco central (de Rolando)"], "k": 79}, {"id": 14, "b": "B", "svg": "cara_medial_calcarino", "p": "En la cara medial del lóbulo occipital mostrada en el esquema, la flecha señala el sitio donde se localiza la corteza visual primaria (área 17 de Brodmann). ¿A qué surco corresponde?", "o": ["Surco calcarino", "Surco del cíngulo", "Surco colateral", "Surco frontal superior"], "k": 61}, {"id": 15, "b": "B", "svg": null, "p": "¿Cómo se clasifican funcionalmente el cuerpo calloso y la comisura anterior dentro de la sustancia blanca hemisférica?", "o": ["Fibras de proyección (conectan la corteza con el tallo y la médula)", "Fibras de asociación cortas en «U»", "Fibras comisurales (conectan áreas homólogas de ambos hemisferios)", "Fibras aferentes espinocerebelosas"], "k": 78}, {"id": 16, "b": "B", "svg": null, "p": "¿Qué fascículo largo de asociación de la sustancia blanca interconecta el área de Broca (lóbulo frontal) con el área de Wernicke (lóbulo temporal) en el hemisferio dominante?", "o": ["Fascículo uncinado", "Fascículo arqueado (porción inferior del fascículo longitudinal superior)", "Tracto mamilotalámico", "Cíngulo parahipocampal"], "k": 74}, {"id": 17, "b": "B", "svg": "axial_flechsig", "p": "Observe el corte axial (de Flechsig) del hemisferio cerebral. ¿Qué banda compacta de sustancia blanca señala la flecha discurriendo entre el núcleo lenticular (lateralmente) y el núcleo caudado y tálamo (medialmente)?", "o": ["Cápsula externa", "Cuerpo calloso", "Fórnix (trígono cerebral)", "Cápsula interna"], "k": 91}, {"id": 18, "b": "B", "svg": null, "p": "En el Circuito de Papez, ¿qué vía de sustancia blanca proyecta las eferencias desde la formación del hipocampo hasta los cuerpos mamilares del hipotálamo?", "o": ["Fórnix (trígono cerebral)", "Estría medular del tálamo", "Tracto mamilotalámico", "Fascículo longitudinal inferior"], "k": 73}, {"id": 19, "b": "C", "svg": null, "p": "Durante la neurulación en la 4.ª semana de desarrollo embrionario, ¿qué estructuras del sistema nervioso derivan del tubo neural y cuáles de la cresta neural, respectivamente?", "o": ["Tubo neural: nervios periféricos; cresta neural: corteza cerebral y cerebelo", "Tubo neural: microglía; cresta neural: epéndimo ventricular", "Tubo neural: Sistema Nervioso Central; cresta neural: ganglios sensitivos/autónomos y células de Schwann", "Tubo neural: duramadre craneal; cresta neural: tálamo y mesencéfalo"], "k": 90}, {"id": 20, "b": "C", "svg": "embrio_neuroporos", "p": "Observe el esquema dorsal del tubo neural en desarrollo durante la 4.ª semana embrionaria. ¿Cuál es el orden cronológico normal de cierre de las aberturas señaladas como (1) craneal y (2) caudal?", "o": ["Primero el neuroporo caudal (~día 18) y luego el cefálico (~día 35)", "Primero el neuroporo anterior/craneal (~día 24–25) y después el posterior/caudal (~día 27–28)", "Ambos neuroporos permanecen abiertos hasta el segundo trimestre fetal", "El cierre inicia en los polos hemisféricos y avanza hacia el rombencéfalo"], "k": 86}, {"id": 21, "b": "C", "svg": null, "p": "¿Qué célula de la neuroglía central emite prolongaciones laminares capaces de mielinizar simultáneamente segmentos de varios axones en el Sistema Nervioso Central?", "o": ["Célula de Schwann", "Astrocito protoplasmático", "Célula satélite capsular", "Oligodendrocito"], "k": 103}, {"id": 22, "b": "C", "svg": null, "p": "A diferencia del resto de las células gliales que derivan del neuroectodermo, ¿cuál es el origen embrionario y la función primordial de la microglía?", "o": ["Origen mesodérmico/hematopoyético; función inmunitaria y fagocítica en el SNC", "Origen en la cresta neural; mielinización de ganglios raquídeos", "Origen neuroepitelial; secreción de líquido cefalorraquídeo en plexos coroideos", "Origen ectodérmico superficial; formación de la barrera hematoencefálica"], "k": 85}, {"id": 23, "b": "C", "svg": null, "p": "¿Qué tipo morfológico de neurona predomina en los ganglios de la raíz dorsal de los nervios espinales para conducir la sensibilidad somática hacia la médula?", "o": ["Neurona multipolar piramidal gigante", "Neurona bipolar de la retina", "Neurona pseudounipolar (unipolar)", "Neurona granular de Purkinje"], "k": 102}, {"id": 24, "b": "C", "svg": "arco_reflejo", "p": "Con base en el circuito medular esquematizado para el reflejo miotático (de estiramiento), ¿qué receptor detecta los cambios de longitud muscular y con qué neurona establece sinapsis monosináptica directa en el asta anterior?", "o": ["Órgano tendinoso de Golgi (fibras Ib) → motoneurona gamma (γ)", "Huso neuromuscular (fibras Ia) → motoneurona alfa (α)", "Corpúsculo de Pacini → interneurona inhibidora de Renshaw", "Terminación nerviosa libre → neurona preganglionar simpática"], "k": 98}, {"id": 25, "b": "C", "svg": null, "p": "En las 6 capas histológicas de la isocorteza (neocorteza), ¿cuál es la capa principalmente receptora de aferencias talámicas específicas y cuál origina las grandes fibras de proyección corticoespinal (células gigantes de Betz)?", "o": ["Capa I (molecular) recibe aferencias talámicas; Capa II origina el tracto piramidal", "Capa VI (multiforme) recibe aferencias visuales; Capa III origina el lemnisco medial", "Capa II recibe aferencias motoras; Capa I contiene los somas de las células de Betz", "Capa IV (granular interna) recibe aferencias talámicas; Capa V (piramidal interna) origina fibras de proyección"], "k": 115}, {"id": 26, "b": "C", "svg": null, "p": "¿A qué áreas citoarquitectónicas de Brodmann y giro cortical corresponde la corteza somatosensorial primaria?", "o": ["Áreas 3, 1 y 2 de Brodmann, ubicadas en el giro poscentral del lóbulo parietal", "Área 4 de Brodmann, ubicada en el giro precentral del lóbulo frontal", "Áreas 41 y 42 de Brodmann, ubicadas en los giros transversos de Heschl", "Área 17 de Brodmann, ubicada en el lóbulo occipital"], "k": 97}, {"id": 27, "b": "C", "svg": null, "p": "¿Cuál es la función primordial del Sistema Activador Reticular Ascendente (SARA) ubicado en el tegmento del tallo cerebral?", "o": ["Coordinar la precisión fina de los movimientos alternantes de las extremidades", "Relevar exclusivamente la sensibilidad termoalgésica hacia el giro poscentral", "Activar difusamente la corteza cerebral vía tálamo para mantener el estado de vigilia y alerta", "Consolidar la memoria declarativa espacial a largo plazo"], "k": 114}, {"id": 28, "b": "C", "svg": null, "p": "Dentro del sistema límbico, ¿qué estructura nuclear ubicada en el polo anterior del lóbulo temporal participa de forma central en el procesamiento del miedo, las respuestas emocionales de alerta y las reacciones autonómicas asociadas?", "o": ["Núcleo caudado", "Cuerpo amigdalino (amígdala)", "Pulvinar del tálamo", "Núcleo rojo mesencefálico"], "k": 110}];
+
+
+const SVGS = {
+  medula_hemiseccion: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo corte transversal medular">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <ellipse cx="160" cy="102" rx="92" ry="68" fill="#FFFFFF" stroke="#334155" stroke-width="2.5"/>
+    <path d="M160,34 A92,68 0 0,1 160,170 Z" fill="#BE123C" fill-opacity="0.22"/>
+    <line x1="160" y1="34" x2="160" y2="90" stroke="#475569" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <path d="M160,170 L160,120" stroke="#334155" stroke-width="2.5"/>
+    <path d="M118,58 C126,56 135,74 142,88 L178,88 C185,74 194,56 202,58 C208,60 202,84 198,98 C206,112 210,136 196,142 C184,146 176,126 172,114 L148,114 C144,126 136,146 124,142 C110,136 114,112 122,98 C118,84 112,60 118,58 Z" fill="#CBD5E1" stroke="#475569" stroke-width="1.8"/>
+    <circle cx="160" cy="101" r="3.5" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
+    <circle cx="215" cy="102" r="7" fill="#BE123C" class="pulse-dot"/>
+    <path d="M275,102 L232,102" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="226,102 236,96 236,108" fill="#BE123C"/>
+  </svg>`,
+
+  cara_medial_motora: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo cara medial hemisferio cerebral">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M52,135 C38,118 42,72 82,46 C125,20 205,22 248,54 C276,76 280,115 260,135 C240,152 205,148 182,138 C162,155 128,158 104,142 C82,148 64,146 52,135 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.4"/>
+    <path d="M108,108 C114,82 148,74 188,80 C206,83 216,95 212,106 C206,112 195,106 186,98 C154,92 128,96 120,112 C115,118 106,115 108,108 Z" fill="#E2E8F0" stroke="#475569" stroke-width="1.8"/>
+    <path d="M74,112 C86,74 134,58 184,64 C196,65 204,52 210,36" fill="none" stroke="#64748B" stroke-width="1.7"/>
+    <path d="M174,28 L170,52" fill="none" stroke="#334155" stroke-width="2"/>
+    <path d="M150,30 L152,58" fill="none" stroke="#64748B" stroke-width="1.5"/>
+    <path d="M236,46 L206,96" fill="none" stroke="#64748B" stroke-width="1.6"/>
+    <path d="M214,98 L266,114" fill="none" stroke="#64748B" stroke-width="1.6"/>
+    <ellipse cx="176" cy="43" rx="18" ry="11" fill="#BE123C" fill-opacity="0.25" stroke="#BE123C" stroke-width="2"/>
+    <path d="M176,8 L176,26" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="176,32 170,22 182,22" fill="#BE123C"/>
+  </svg>`,
+
+  cara_lateral_broca: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo cara superolateral hemisferio izquierdo">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M48,118 C40,78 72,34 142,28 C215,22 268,58 274,104 C278,136 254,158 222,156 C198,154 184,166 156,166 C126,166 112,148 92,146 C66,144 52,136 48,118 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.4"/>
+    <path d="M168,28 C162,56 154,82 146,104" fill="none" stroke="#334155" stroke-width="2.2"/>
+    <path d="M98,126 C126,116 164,106 206,96" fill="none" stroke="#334155" stroke-width="2.2"/>
+    <path d="M72,72 C102,68 130,68 156,74" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+    <path d="M62,98 C92,94 120,94 142,98" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+    <ellipse cx="118" cy="108" rx="16" ry="11" fill="#BE123C" fill-opacity="0.28" stroke="#BE123C" stroke-width="2"/>
+    <path d="M84,168 L108,126" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="112,120 101,126 111,132" fill="#BE123C"/>
+  </svg>`,
+
+  coronal_caudado: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo corte coronal hemisferios cerebrales">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M160,26 C112,24 62,54 58,104 C55,144 82,172 118,170 C138,169 148,156 160,152 C172,156 182,169 202,170 C238,172 265,144 262,104 C258,54 208,24 160,26 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.4"/>
+    <line x1="160" y1="26" x2="160" y2="62" stroke="#334155" stroke-width="2"/>
+    <path d="M116,66 Q160,56 204,66 L202,76 Q160,67 118,76 Z" fill="#E2E8F0" stroke="#475569" stroke-width="1.5"/>
+    <path d="M158,74 C144,74 134,82 138,100 C142,108 152,108 158,102 Z" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.6"/>
+    <path d="M162,74 C176,74 186,82 182,100 C178,108 168,108 162,102 Z" fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.6"/>
+    <ellipse cx="129" cy="92" rx="11" ry="15" fill="#CBD5E1" stroke="#475569" stroke-width="1.6"/>
+    <ellipse cx="191" cy="92" rx="11" ry="15" fill="#BE123C" fill-opacity="0.32" stroke="#BE123C" stroke-width="2.2"/>
+    <polygon points="94,104 114,96 116,124 98,128" fill="#E2E8F0" stroke="#64748B" stroke-width="1.5"/>
+    <polygon points="226,104 206,96 204,124 222,128" fill="#E2E8F0" stroke="#64748B" stroke-width="1.5"/>
+    <path d="M262,56 L206,84" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="200,87 211,88 206,77" fill="#BE123C"/>
+  </svg>`,
+
+  tectum_mesencefalo: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo vista posterior tallo cerebral">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M112,26 L208,26 C214,64 212,92 224,116 C212,138 192,158 182,182 L138,182 C128,158 108,138 96,116 C108,92 106,64 112,26 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.2"/>
+    <polygon points="160,104 198,134 160,168 122,134" fill="#F1F5F9" stroke="#64748B" stroke-width="1.6"/>
+    <ellipse cx="144" cy="54" rx="15" ry="13" fill="#BE123C" fill-opacity="0.22" stroke="#BE123C" stroke-width="2"/>
+    <ellipse cx="176" cy="54" rx="15" ry="13" fill="#BE123C" fill-opacity="0.22" stroke="#BE123C" stroke-width="2"/>
+    <ellipse cx="145" cy="82" rx="13" ry="11" fill="#0F766E" fill-opacity="0.22" stroke="#0F766E" stroke-width="2"/>
+    <ellipse cx="175" cy="82" rx="13" ry="11" fill="#0F766E" fill-opacity="0.22" stroke="#0F766E" stroke-width="2"/>
+    <path d="M248,50 L200,54" stroke="#BE123C" stroke-width="2.5"/>
+    <polygon points="193,54 203,49 203,59" fill="#BE123C"/>
+    <circle cx="262" cy="50" r="12" fill="#BE123C"/><text x="262" y="55" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold" font-family="sans-serif">1</text>
+    <path d="M248,84 L196,82" stroke="#0F766E" stroke-width="2.5"/>
+    <polygon points="190,82 200,77 200,87" fill="#0F766E"/>
+    <circle cx="262" cy="84" r="12" fill="#0F766E"/><text x="262" y="89" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold" font-family="sans-serif">2</text>
+  </svg>`,
+
+  cara_lateral_rolando: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo surco principal cara superolateral">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M48,118 C40,78 72,34 142,28 C215,22 268,58 274,104 C278,136 254,158 222,156 C198,154 184,166 156,166 C126,166 112,148 92,146 C66,144 52,136 48,118 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.4"/>
+    <path d="M98,126 C126,116 164,106 206,96" fill="none" stroke="#64748B" stroke-width="1.8"/>
+    <path d="M168,28 C162,56 154,82 146,104" fill="none" stroke="#BE123C" stroke-width="4" stroke-linecap="round"/>
+    <path d="M148,32 C142,58 136,80 128,100" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+    <path d="M188,32 C182,58 174,80 166,98" fill="none" stroke="#94A3B8" stroke-width="1.4"/>
+    <path d="M214,12 L176,34" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="170,38 181,38 175,28" fill="#BE123C"/>
+  </svg>`,
+
+  cara_medial_calcarino: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo surco occipital cara medial">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M52,135 C38,118 42,72 82,46 C125,20 205,22 248,54 C276,76 280,115 260,135 C240,152 205,148 182,138 C162,155 128,158 104,142 C82,148 64,146 52,135 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.4"/>
+    <path d="M108,108 C114,82 148,74 188,80 C206,83 216,95 212,106 C206,112 195,106 186,98 C154,92 128,96 120,112 C115,118 106,115 108,108 Z" fill="#E2E8F0" stroke="#475569" stroke-width="1.8"/>
+    <path d="M236,46 L206,96" fill="none" stroke="#64748B" stroke-width="1.8"/>
+    <path d="M210,98 L268,114" fill="none" stroke="#BE123C" stroke-width="4.2" stroke-linecap="round"/>
+    <path d="M292,154 L254,122" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="248,117 253,128 260,119" fill="#BE123C"/>
+  </svg>`,
+
+  axial_flechsig: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo corte axial de Flechsig">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <ellipse cx="160" cy="100" rx="112" ry="82" fill="#FFFFFF" stroke="#334155" stroke-width="2.4"/>
+    <line x1="160" y1="18" x2="160" y2="182" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="4,3"/>
+    <ellipse cx="144" cy="64" rx="10" ry="15" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+    <ellipse cx="176" cy="64" rx="10" ry="15" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+    <ellipse cx="142" cy="116" rx="15" ry="24" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+    <ellipse cx="178" cy="116" rx="15" ry="24" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+    <polygon points="96,76 122,94 102,126" fill="#E2E8F0" stroke="#475569" stroke-width="1.5"/>
+    <polygon points="224,76 198,94 218,126" fill="#E2E8F0" stroke="#475569" stroke-width="1.5"/>
+    <polyline points="196,54 184,90 212,138" fill="none" stroke="#BE123C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.75"/>
+    <path d="M272,150 L214,120" stroke="#BE123C" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="208,117 214,126 219,116" fill="#BE123C"/>
+  </svg>`,
+
+  embrio_neuroporos: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo cierre de neuroporos">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <path d="M132,36 C116,44 114,68 128,84 L132,148 C124,162 134,174 160,174 C186,174 196,162 188,148 L192,84 C206,68 204,44 188,36 Z" fill="#FFFFFF" stroke="#334155" stroke-width="2.2"/>
+    <rect x="148" y="64" width="24" height="72" rx="4" fill="#CBD5E1" stroke="#475569" stroke-width="1.6"/>
+    <rect x="134" y="76" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="134" y="90" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="134" y="104" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="134" y="118" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="176" y="76" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="176" y="90" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="176" y="104" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <rect x="176" y="118" width="10" height="8" rx="2" fill="#E2E8F0" stroke="#64748B"/>
+    <ellipse cx="160" cy="46" rx="14" ry="12" fill="#BE123C" fill-opacity="0.25" stroke="#BE123C" stroke-width="2.2"/>
+    <ellipse cx="160" cy="154" rx="11" ry="12" fill="#0F766E" fill-opacity="0.25" stroke="#0F766E" stroke-width="2.2"/>
+    <path d="M236,46 L182,46" stroke="#BE123C" stroke-width="2.5"/>
+    <polygon points="176,46 186,41 186,51" fill="#BE123C"/>
+    <circle cx="250" cy="46" r="12" fill="#BE123C"/><text x="250" y="51" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold" font-family="sans-serif">1</text>
+    <path d="M236,154 L178,154" stroke="#0F766E" stroke-width="2.5"/>
+    <polygon points="172,154 182,149 182,159" fill="#0F766E"/>
+    <circle cx="250" cy="154" r="12" fill="#0F766E"/><text x="250" y="159" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold" font-family="sans-serif">2</text>
+  </svg>`,
+
+  arco_reflejo: `<svg viewBox="0 0 320 200" class="w-full max-w-sm mx-auto" aria-label="Esquema mudo arco reflejo miotático">
+    <rect x="2" y="2" width="316" height="196" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <ellipse cx="96" cy="100" rx="56" ry="46" fill="#FFFFFF" stroke="#334155" stroke-width="2"/>
+    <path d="M72,72 C78,72 84,84 88,92 L104,92 C108,84 114,72 120,72 C122,82 118,92 114,98 C120,108 122,124 112,126 C106,128 102,114 98,108 L94,108 C90,114 86,128 80,126 C70,124 72,108 78,98 C74,92 70,82 72,72 Z" fill="#CBD5E1" stroke="#475569" stroke-width="1.4"/>
+    <path d="M224,78 C248,64 282,70 292,100 C282,130 248,136 224,122 C236,108 236,92 224,78 Z" fill="#FEE2E2" stroke="#991B1B" stroke-width="1.8"/>
+    <ellipse cx="262" cy="100" rx="16" ry="8" fill="#FFFFFF" stroke="#BE123C" stroke-width="2"/>
+    <path d="M254,92 C234,54 180,46 134,70 L114,80 L110,112" fill="none" stroke="#0F766E" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="182" cy="54" r="6" fill="#0F766E"/>
+    <circle cx="110" cy="114" r="5" fill="#BE123C" class="pulse-dot"/>
+    <path d="M114,116 C152,148 208,148 242,116" fill="none" stroke="#BE123C" stroke-width="2.6" stroke-linecap="round"/>
+    <polygon points="246,112 236,114 242,121" fill="#BE123C"/>
+  </svg>`
+};
+
+
+
+const TOKEN_SALT = "UAD-MOR-NEURO1-FINAL-2026-RJA";
+
+function computeChecksum6(str) {
+  let h1 = 0x811c9dc5;
+  let h2 = 0x1000193;
+  const full = TOKEN_SALT + "|" + str + "|" + TOKEN_SALT.length;
+  for (let i = 0; i < full.length; i++) {
+    const c = full.charCodeAt(i);
+    h1 ^= c;
+    h1 = Math.imul(h1, 0x01000193) >>> 0;
+    h2 = (Math.imul(h2, 31) + c + i) >>> 0;
+  }
+  const comb = ((h1 ^ (h2 << 3)) >>> 0).toString(16).toUpperCase().padStart(8, "0");
+  return comb.slice(0, 6);
+}
+
+function toBase64Url(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function fromBase64Url(b64) {
+  let s = b64.replace(/-/g, "+").replace(/_/g, "/");
+  while (s.length % 4) s += "=";
+  const bin = atob(s);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+function buildToken(payloadStr) {
+  const chk = computeChecksum6(payloadStr);
+  return "UADNF1-" + toBase64Url(payloadStr) + "-" + chk;
+}
+
+
+function decodeCorrectIdx(q) {
+  return (q.k - (q.id * 3) - 19) / 7;
+}
+
+function isInAppWebView() {
+  const ua = navigator.userAgent || "";
+  return /WhatsApp|FBAN|FBAV|Instagram|Line\/|MicroMessenger|Snapchat|TikTok|; wv\)/i.test(ua);
+}
+
+function getDeviceId() {
+  let id = localStorage.getItem(DEVICE_KEY);
+  if (!id) {
+    const raw = (navigator.userAgent || "") + "|" + screen.width + "x" + screen.height + "|" + Math.random().toString(36).slice(2, 10);
+    id = computeChecksum6(raw);
+    localStorage.setItem(DEVICE_KEY, id);
+  }
+  return id;
+}
+
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function fmtClock(sec) {
+  const s = Math.max(0, Math.floor(sec));
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return String(m).padStart(2, "0") + ":" + String(r).padStart(2, "0");
+}
+
+function fmtTimeHMS(ts) {
+  const d = new Date(ts);
+  return [d.getHours(), d.getMinutes(), d.getSeconds()].map(n => String(n).padStart(2, "0")).join(":");
+}
+
+function fmtTimeCompact(ts) {
+  const d = new Date(ts);
+  return [d.getHours(), d.getMinutes(), d.getSeconds()].map(n => String(n).padStart(2, "0")).join("");
+}
+
+// Estado global de sesión
+let state = null;
+let timerInterval = null;
+let blurTimeout = null;
+let isResetting = false;
+let lastPerfMs = performance.now();
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function buildShuffledOrder() {
+  const qIds = shuffleArray(MASTER_QUESTIONS.map(q => q.id));
+  const optOrders = {};
+  MASTER_QUESTIONS.forEach(q => {
+    optOrders[q.id] = shuffleArray([0, 1, 2, 3]);
+  });
+  return { qIds, optOrders };
+}
+
+function populateStudents() {
+  const sel = document.getElementById("selectStudent");
+  sel.innerHTML = '<option value="">-- Selecciona tu nombre oficial --</option>';
+  ALUMNOS_OFICIALES.forEach(al => {
+    const opt = document.createElement("option");
+    opt.value = al.matricula;
+    opt.textContent = `${al.matricula} — ${al.nombre}`;
+    sel.appendChild(opt);
+  });
+}
+
+function iniciarExamen() {
+  if (isInAppWebView()) {
+    alert("Abre este enlace en Safari o Chrome (no dentro de WhatsApp ni redes sociales) para poder iniciar y guardar tu PDF correctamente.");
+    return;
+  }
+  const mat = document.getElementById("selectStudent").value;
+  const ok = document.getElementById("chkConfirm").checked;
+  if (!mat) { alert("Por favor selecciona tu matrícula y nombre de la lista."); return; }
+  if (!ok) { alert("Debes marcar la casilla de confirmación antes de iniciar."); return; }
+
+  const alumno = ALUMNOS_OFICIALES.find(a => a.matricula === mat);
+  if (!confirm(`Confirmar identidad:\n\n${alumno.matricula} — ${alumno.nombre}\n\nEl reloj de 50 minutos iniciará de inmediato.`)) {
+    return;
+  }
+
+  const nowTs = Date.now();
+  const ord = buildShuffledOrder();
+  state = {
+    status: "ACTIVE",
+    matricula: alumno.matricula,
+    nombre: alumno.nombre,
+    startTs: nowTs,
+    lastTickTs: nowTs,
+    monotonicElapsedSec: 0,
+    clockTamper: false,
+    endTs: null,
+    salidas: 0,
+    intentos: 1,
+    currentIdx: 0,
+    qOrder: ord.qIds,
+    optOrders: ord.optOrders,
+    answers: {},
+    deviceId: getDeviceId(),
+    sheetSent: false,
+    result: null
+  };
+  lastPerfMs = performance.now();
+  saveState();
+  activarVistaExamen();
+}
+
+function activarVistaExamen() {
+  document.getElementById("viewLogin").classList.add("hidden");
+  document.getElementById("viewReceipt").classList.add("hidden");
+  document.getElementById("viewExam").classList.remove("hidden");
+  document.getElementById("headerTimerBox").classList.remove("hidden");
+  document.getElementById("headerBarWrap").classList.remove("hidden");
+
+  document.getElementById("examStudentLabel").textContent = `${state.matricula} — ${state.nombre}`;
+  renderExamUI();
+  iniciarReloj();
+}
+
+function computeSafeElapsedSec() {
+  const nowTs = Date.now();
+  const nowPerf = performance.now();
+  const deltaPerfSec = Math.max(0, (nowPerf - lastPerfMs) / 1000);
+  lastPerfMs = nowPerf;
+
+  // Detecta retroceso manual del reloj del dispositivo (> 5 segundos)
+  if (state.lastTickTs && nowTs < (state.lastTickTs - 5000)) {
+    state.clockTamper = true;
+  }
+  state.lastTickTs = Math.max(state.lastTickTs || nowTs, nowTs);
+  state.monotonicElapsedSec = (state.monotonicElapsedSec || 0) + deltaPerfSec;
+
+  const wallElapsed = Math.floor((nowTs - state.startTs) / 1000);
+  const safeElapsed = Math.max(wallElapsed, Math.floor(state.monotonicElapsedSec));
+  return Math.max(0, safeElapsed);
+}
+
+function iniciarReloj() {
+  if (timerInterval) clearInterval(timerInterval);
+  lastPerfMs = performance.now();
+  let saveCounter = 0;
+
+  const tick = () => {
+    if (!state || state.status !== "ACTIVE") { clearInterval(timerInterval); return; }
+    const elapsed = computeSafeElapsedSec();
+    const left = EXAM_DURATION_SEC - elapsed;
+
+    const timerEl = document.getElementById("timerText");
+    const barEl = document.getElementById("timerBar");
+    timerEl.textContent = fmtClock(left);
+    const pct = Math.max(0, Math.min(100, (left / EXAM_DURATION_SEC) * 100));
+    barEl.style.width = pct + "%";
+
+    if (left <= 180) {
+      barEl.style.backgroundColor = "#BE123C";
+    } else if (left <= 600) {
+      barEl.style.backgroundColor = "#D97706";
+    } else {
+      barEl.style.backgroundColor = "#059669";
+    }
+
+    saveCounter++;
+    if (saveCounter % 10 === 0) saveState();
+
+    if (left <= 0) {
+      clearInterval(timerInterval);
+      finalizarExamen("T");
+    }
+  };
+  tick();
+  timerInterval = setInterval(tick, 500);
+}
+
+function renderExamUI() {
+  const qId = state.qOrder[state.currentIdx];
+  const q = MASTER_QUESTIONS.find(item => item.id === qId);
+  const optOrder = state.optOrders[qId];
+  const chosenOrigIdx = state.answers[qId];
+
+  const answered = Object.keys(state.answers).length;
+  document.getElementById("answeredCount").textContent = answered;
+  document.getElementById("attemptCount").textContent = state.intentos;
+  document.getElementById("exitCount").textContent = state.salidas;
+
+  const grid = document.getElementById("navGrid");
+  grid.innerHTML = "";
+  state.qOrder.forEach((id, idx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "q-pill";
+    if (state.answers[id] !== undefined) btn.classList.add("answered");
+    if (idx === state.currentIdx) btn.classList.add("current");
+    btn.textContent = idx + 1;
+    btn.onclick = () => { state.currentIdx = idx; saveState(); renderExamUI(); };
+    grid.appendChild(btn);
+  });
+
+  const blkName = q.b === "A" ? "Correlación Clínico-Topográfica" : (q.b === "B" ? "Identificación Espacial y Relaciones" : "Conceptos, Embriología e Histología");
+  document.getElementById("qBadge").textContent = `Reactivo ${state.currentIdx + 1} de 28 • ${blkName}`;
+  document.getElementById("qText").textContent = q.p;
+
+  const svgBox = document.getElementById("qSvg");
+  if (q.svg && SVGS[q.svg]) {
+    svgBox.innerHTML = SVGS[q.svg];
+    svgBox.classList.remove("hidden");
+  } else {
+    svgBox.innerHTML = "";
+    svgBox.classList.add("hidden");
+  }
+
+  const letters = ["A", "B", "C", "D"];
+  const optWrap = document.getElementById("qOptions");
+  optWrap.innerHTML = "";
+  optOrder.forEach((origIdx, dispIdx) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "opt-btn" + (chosenOrigIdx === origIdx ? " selected" : "");
+    btn.innerHTML = `<span class="opt-letter">${letters[dispIdx]}</span><span>${q.o[origIdx]}</span>`;
+    btn.onclick = () => {
+      state.answers[qId] = origIdx;
+      saveState();
+      renderExamUI();
+    };
+    optWrap.appendChild(btn);
+  });
+
+  document.getElementById("btnPrev").disabled = (state.currentIdx === 0);
+  document.getElementById("btnNext").disabled = (state.currentIdx === state.qOrder.length - 1);
+}
+
+function navegar(delta) {
+  const next = state.currentIdx + delta;
+  if (next >= 0 && next < state.qOrder.length) {
+    state.currentIdx = next;
+    saveState();
+    renderExamUI();
+  }
+}
+
+function abrirModalFinalizar() {
+  const answered = Object.keys(state.answers).length;
+  const missing = 28 - answered;
+  const txt = missing > 0
+    ? `Llevas ${answered} de 28 reactivos contestados (te faltan ${missing} sin responder). ¿Deseas finalizar y enviar tu evaluación así?`
+    : `Has contestado los 28 reactivos. Una vez enviada la evaluación no podrás modificar tus respuestas.`;
+  document.getElementById("modalFinishText").textContent = txt;
+  document.getElementById("modalFinish").classList.remove("hidden");
+}
+
+function cerrarModalFinalizar() {
+  document.getElementById("modalFinish").classList.add("hidden");
+}
+
+function penalizarSalida(motivo) {
+  if (!state || state.status !== "ACTIVE" || isResetting) return;
+  isResetting = true;
+  state.salidas += 1;
+  state.intentos += 1;
+  state.answers = {};
+  state.currentIdx = 0;
+  const ord = buildShuffledOrder();
+  state.qOrder = ord.qIds;
+  state.optOrders = ord.optOrders;
+  saveState();
+  cerrarModalFinalizar();
+  renderExamUI();
+  document.getElementById("modalResetText").textContent =
+    `Se detectó ${motivo}. Conforme a las reglas del examen, tus respuestas han sido reiniciadas y las preguntas reordenadas. Salidas registradas: ${state.salidas} | Intento actual: #${state.intentos}. El reloj continúa corriendo.`;
+  document.getElementById("modalReset").classList.remove("hidden");
+  setTimeout(() => { isResetting = false; }, 800);
+}
+
+function finalizarExamen(cierreBase) {
+  if (!state || state.status === "COMPLETED") return;
+  cerrarModalFinalizar();
+  if (timerInterval) clearInterval(timerInterval);
+  if (blurTimeout) clearTimeout(blurTimeout);
+
+  const endTs = Date.now();
+  const safeElapsed = computeSafeElapsedSec();
+  const durSeg = Math.max(1, Math.min(EXAM_DURATION_SEC, safeElapsed));
+  const cierreCode = state.clockTamper ? (cierreBase + "C") : cierreBase;
+
+  let aciertos = 0, aOk = 0, bOk = 0, cOk = 0;
+  let ans28 = "";
+
+  MASTER_QUESTIONS.forEach(q => {
+    const chosen = state.answers[q.id];
+    const corr = decodeCorrectIdx(q);
+    if (chosen === undefined) {
+      ans28 += "X";
+    } else {
+      ans28 += String(chosen);
+      if (chosen === corr) {
+        aciertos++;
+        if (q.b === "A") aOk++;
+        else if (q.b === "B") bOk++;
+        else cOk++;
+      }
+    }
+  });
+
+  const calif100 = Number(((aciertos / 28) * 100).toFixed(1));
+  const inicioCompact = fmtTimeCompact(state.startTs);
+  const terminoCompact = fmtTimeCompact(endTs);
+  const payloadStr = [
+    state.matricula,
+    aciertos,
+    calif100.toFixed(1),
+    inicioCompact,
+    terminoCompact,
+    durSeg,
+    state.salidas,
+    state.intentos,
+    cierreCode,
+    state.deviceId,
+    ans28
+  ].join("|");
+
+  const token = buildToken(payloadStr);
+
+  state.status = "COMPLETED";
+  state.endTs = endTs;
+  state.result = {
+    aciertos, calif100, aOk, bOk, cOk,
+    horaInicio: fmtTimeHMS(state.startTs),
+    horaTermino: fmtTimeHMS(endTs),
+    durSeg, cierreTipo: cierreCode,
+    clockTamper: !!state.clockTamper,
+    token, ans28
+  };
+  saveState();
+  mostrarComprobante();
+  enviarAGoogleSheets(false);
+}
+
+function buildPlainTextReport() {
+  const r = state.result;
+  const durMin = Math.floor(r.durSeg / 60);
+  const durSec = r.durSeg % 60;
+  const cierreTxt = r.cierreTipo.startsWith("T") ? "Tiempo agotado" : "Manual";
+  const clockNote = r.clockTamper ? " | ⚠️ ANOMALÍA RELOJ" : "";
+  return [
+    "EXAMEN FINAL — NEUROANATOMÍA I (UAD MORELIA)",
+    `Alumno: ${state.nombre}`,
+    `Matrícula: ${state.matricula}`,
+    `Calificación: ${r.calif100.toFixed(1)} / 100 (${r.aciertos} de 28 aciertos)`,
+    `Bloques: Clínico ${r.aOk}/7 | Espacial ${r.bOk}/11 | Conceptos ${r.cOk}/10`,
+    `Horario: ${r.horaInicio} a ${r.horaTermino} (${durMin}m ${durSec}s) | Cierre: ${cierreTxt}${clockNote}`,
+    `Integridad: ${state.salidas} salidas | ${state.intentos} intentos | ID_DISP: ${state.deviceId}`,
+    `FOLIO VALIDACIÓN: ${r.token}`
+  ].join("\n");
+}
+
+function mostrarComprobante() {
+  document.getElementById("viewLogin").classList.add("hidden");
+  document.getElementById("viewExam").classList.add("hidden");
+  document.getElementById("headerTimerBox").classList.add("hidden");
+  document.getElementById("headerBarWrap").classList.add("hidden");
+  document.getElementById("viewReceipt").classList.remove("hidden");
+
+  const r = state.result;
+  const durMin = Math.floor(r.durSeg / 60);
+  const durSec = r.durSeg % 60;
+  const cierreTxt = r.cierreTipo.startsWith("T") ? "Cierre automático por tiempo" : "Cierre manual";
+
+  document.getElementById("rcpName").textContent = state.nombre;
+  document.getElementById("rcpMat").textContent = `Matrícula: ${state.matricula}`;
+  document.getElementById("rcpScore").textContent = `${r.calif100.toFixed(1)} / 100`;
+  document.getElementById("rcpAciertos").textContent = `${r.aciertos} de 28 aciertos (${(r.calif100/10).toFixed(2)} en escala de 10)`;
+  document.getElementById("rcpBlkA").textContent = `${r.aOk} / 7 aciertos`;
+  document.getElementById("rcpBlkB").textContent = `${r.bOk} / 11 aciertos`;
+  document.getElementById("rcpBlkC").textContent = `${r.cOk} / 10 aciertos`;
+  document.getElementById("rcpTimes").textContent = `${r.horaInicio}  —  ${r.horaTermino}`;
+  document.getElementById("rcpDuration").textContent = `${durMin} min ${durSec} seg (${cierreTxt})`;
+
+  const intEl = document.getElementById("rcpIntegrity");
+  const badgeClass = (state.salidas === 0 && !r.clockTamper) ? "status-ok" : "status-err";
+  const clockBadge = r.clockTamper ? ' <span class="status-pill status-err">⚠️ Reloj alterado</span>' : '';
+  intEl.innerHTML = `<span class="status-pill ${badgeClass}">${state.salidas} salidas de ventana / ${state.intentos} intento(s)</span>${clockBadge}`;
+  document.getElementById("rcpDevice").textContent = state.deviceId;
+  document.getElementById("rcpToken").textContent = r.token;
+
+  const txt = buildPlainTextReport();
+  const waUrl = `https://wa.me/${CONFIG_DOCENTE.WHATSAPP_DOCENTE}?text=${encodeURIComponent(txt)}`;
+  document.getElementById("btnWhatsApp").href = waUrl;
+
+  const subject = `Examen Final Neuroanatomía I — ${state.matricula} ${state.nombre}`;
+  const mailUrl = `mailto:${CONFIG_DOCENTE.CORREO_DOCENTE}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(txt)}`;
+  document.getElementById("btnEmail").href = mailUrl;
+
+  const retryBtn = document.getElementById("btnRetrySheet");
+  if (!CONFIG_DOCENTE.APPS_SCRIPT_URL) {
+    document.getElementById("sheetsStatusText").textContent = "Respaldo local activo: descarga tu PDF y envía tu comprobante por WhatsApp o Correo.";
+    retryBtn.classList.add("hidden");
+  } else if (state.sheetSent) {
+    document.getElementById("sheetsStatusText").textContent = "📤 Solicitud enviada al servidor docente (guarda tu PDF como respaldo oficial).";
+    retryBtn.classList.remove("hidden");
+  }
+}
+
+function enviarAGoogleSheets(isManualRetry) {
+  if (!CONFIG_DOCENTE.APPS_SCRIPT_URL) return;
+  if (state.sheetSent && !isManualRetry) return;
+
+  const statusEl = document.getElementById("sheetsStatusText");
+  const retryBtn = document.getElementById("btnRetrySheet");
+  statusEl.textContent = "Enviando registro al servidor docente...";
+  retryBtn.classList.add("hidden");
+
+  const r = state.result;
+  const payload = {
+    matricula: state.matricula,
+    nombre: state.nombre,
+    aciertos: r.aciertos,
+    calificacion: r.calif100,
+    bloqueA: r.aOk,
+    bloqueB: r.bOk,
+    bloqueC: r.cOk,
+    horaInicio: r.horaInicio,
+    horaTermino: r.horaTermino,
+    duracionSeg: r.durSeg,
+    cierre: r.cierreTipo.startsWith("T") ? "Tiempo agotado" : "Manual",
+    salidas: state.salidas,
+    intentos: state.intentos,
+    relojAlterado: r.clockTamper ? "SI" : "NO",
+    deviceId: state.deviceId,
+    token: r.token
+  };
+
+  fetch(CONFIG_DOCENTE.APPS_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    keepalive: true,
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    state.sheetSent = true;
+    saveState();
+    statusEl.textContent = "📤 Solicitud enviada al servidor docente (guarda tu PDF como respaldo oficial).";
+    retryBtn.classList.remove("hidden");
+  }).catch(() => {
+    statusEl.textContent = "⚠️ Error de red al conectar con el servidor. Presiona «Reintentar envío» o envía tu PDF por WhatsApp.";
+    retryBtn.classList.remove("hidden");
+  });
+}
+
+function copiarComprobante() {
+  const txt = buildPlainTextReport();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => alert("Comprobante copiado al portapapeles.")).catch(() => fallbackCopy(txt));
+  } else {
+    fallbackCopy(txt);
+  }
+}
+
+function fallbackCopy(txt) {
+  const ta = document.createElement("textarea");
+  ta.value = txt;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); alert("Comprobante copiado al portapapeles."); }
+  catch(e) { alert("No se pudo copiar automáticamente; selecciona el folio manualmente."); }
+  document.body.removeChild(ta);
+}
+
+function descargarTxt() {
+  const blob = new Blob([buildPlainTextReport()], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `Examen_Final_Neuro1_${state.matricula}.txt`;
+  a.click();
+}
+
+// Protección contra recarga o botón Atrás accidental durante examen activo
+window.addEventListener("beforeunload", e => {
+  if (state && state.status === "ACTIVE") {
+    e.preventDefault();
+    e.returnValue = "";
+  }
+});
+
+// Monitoreo de integridad: visibilitychange (inmediato) + blur (margen 2.5 s) + bloqueo clic derecho
+document.addEventListener("contextmenu", e => {
+  if (state && state.status === "ACTIVE") e.preventDefault();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (state && state.status === "ACTIVE" && document.hidden) {
+    penalizarSalida("cambio de pestaña, bloqueo de pantalla o cambio de aplicación");
+  }
+});
+
+window.addEventListener("blur", () => {
+  if (!state || state.status !== "ACTIVE") return;
+  if (blurTimeout) clearTimeout(blurTimeout);
+  blurTimeout = setTimeout(() => {
+    if (state && state.status === "ACTIVE" && !document.hasFocus()) {
+      penalizarSalida("pérdida prolongada de foco de ventana (>2.5 s)");
+    }
+  }, 2500);
+});
+
+window.addEventListener("focus", () => {
+  if (blurTimeout) { clearTimeout(blurTimeout); blurTimeout = null; }
+});
+
+// Inicialización y recuperación de sesión
+window.addEventListener("DOMContentLoaded", () => {
+  populateStudents();
+  if (isInAppWebView()) {
+    document.getElementById("webviewWarning").classList.remove("hidden");
+    document.getElementById("btnStart").disabled = true;
+    document.getElementById("btnStart").textContent = "Abre en Safari o Chrome para iniciar";
+  }
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      state = JSON.parse(saved);
+      if (state.status === "COMPLETED") {
+        mostrarComprobante();
+        if (CONFIG_DOCENTE.APPS_SCRIPT_URL && !state.sheetSent) {
+          enviarAGoogleSheets(false);
+        }
+        return;
+      }
+      if (state.status === "ACTIVE") {
+        const elapsed = Math.max(
+          Math.floor((Date.now() - state.startTs) / 1000),
+          Math.floor(state.monotonicElapsedSec || 0)
+        );
+        if (elapsed >= EXAM_DURATION_SEC) {
+          finalizarExamen("T");
+          return;
+        }
+        activarVistaExamen();
+        penalizarSalida("recarga de la página durante la evaluación");
+        return;
+      }
+    }
+  } catch(e) {}
+});
+</script>
+</body>
+</html>
